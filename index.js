@@ -5,6 +5,7 @@ require("dotenv").config();
 const categories = require("./routes/category-route");
 const courses = require("./routes/course-route");
 const users = require("./routes/user-route");
+const auth = require("./routes/auth-route");
 
 //connect to mongodb
 async function connect() {
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/categories", categories);
 app.use("/api/courses", courses);
 app.use("/api/users", users);
+app.use("/api/auth", auth);
 
 //local host
 const port = process.env.PORT || 8080;

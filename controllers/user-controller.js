@@ -3,7 +3,7 @@ const _ = require("lodash");
 const { User, validateUser } = require("../models/user-model");
 
 module.exports = {
-  async postUser(req, res) {
+  async registerUser(req, res) {
     let error = validateUser(req.body);
     if (error.error)
       return res.status(400).send(error.error.details[0].message);
@@ -29,5 +29,10 @@ module.exports = {
     let userData = _.pick(user, ["_id", "username", "email", "role"]);
     userData.token = token;
     res.send(userData);
+  },
+
+  async getUserByTokenId(req, res) {
+    const user = await User.findById(req.user._id).select("-password");
+    res.send(user);
   },
 };

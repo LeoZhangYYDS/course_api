@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ["student", "teacher", "admin"],
     required: true,
-    enum: ["student", "teacher"],
   },
 });
 
@@ -38,6 +38,7 @@ userSchema.methods.generateAuthToken = function () {
       username: this.username,
       email: this.email,
       role: this.role,
+      isAdmin: this.isAdmin,
     },
     process.env.COURSE_KEY
   );
