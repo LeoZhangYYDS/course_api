@@ -42,7 +42,7 @@ module.exports = {
           .status(404)
           .send("The category with the given ID was not found!");
       }
-      res.send(category);
+      res.send("Delete success.");
     } catch (err) {
       console.log(err);
     }
